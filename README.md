@@ -1,19 +1,23 @@
-# mizchi's minimum frontend project
+# Slide
 
 ```
-$ npm install -g browserify wzrd
+$ npm install -g gulp
 $ npm install
 ```
 
-## Commands
+## Develop
 
 ```
-$ npm run server # start wzrd server on localhost:9966
-$ npm run build  # build bundle.js to run locally
-$ npm run open   # open localhost:9966 by GoogleChromeCanary
+gulp watch
 ```
 
-and open index.html
+and open `assets/index.html`
+
+## Upload
+
+```
+$ sh deploy.sh
+```
 
 ## LICENSE
 
