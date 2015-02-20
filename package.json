@@ -1,7 +1,7 @@
 {
-  "name": "minprj",
+  "name": "mz-slide",
   "version": "0.0.0",
-  "description": "mizchi's minimum project",
+  "description": "static slide generator",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +14,8 @@
     "gulp": "^3.8.11",
     "gulp-dev": "0.0.2",
     "gulp-sass": "^1.3.3",
-    "gulp-shell": "^0.3.0"
+    "gulp-shell": "^0.3.0",
+    "mdast": "^0.5.3"
   },
   "dependencies": {
     "md2react": "^0.2.3",

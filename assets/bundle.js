@@ -26075,7 +26075,7 @@ md2react = require('md2react');
 
 
 
-source = Buffer("IyBIZWxsbyBTbGlkZQoKLS0tLS0tLQoKIyMgVGhpcyBpcyBzdWJ0aXRsZQoKLS0tLS0tLQoKIyMgRk9PTwoKYWFhYWEKYmJiYmIK","base64").toString();
+source = Buffer("IyBtei1zbGlkZQoKQXV0aG9yOiBAbWl6Y2hpCgojIyBVc2FnZQoKUHJlc3MgbGVmdC9yaWdodCB0byBwcmV2L25leHQKCi0tLS0tLS0KCiMjIEhvdyB0byBzdGFydAoKYGBgCiQgZ2l0QGdpdGh1Yi5jb206bWl6Y2hpL216LXNsaWRlLmdpdAokIGNkIG16LXNsaWRlCiQgbnBtIGluc3RhbGwgLWcgZ3VscAokIG5wbSBpbnN0YWxsCiQgZ3VscApgYGAKCm9wZW4gYXNzZXRzL2luZGV4Lmh0bWwKCi0tLS0tLS0KCiMjIEVkaXQgeW91ciBzbGlkZS5tZAoKLSBXaXJ0ZSB5b3VyIHNsaWRlIGJ5IG1hcmtkb3duCi0gUmVuZGVyZWQgc2xpZGUgaXMgc3BsaXRlZCBieSBgXC1cLVwtYAoKLS0tLS0tLQoKIyMgRGV2ZWxvcCB5b3VyIG93biBzbGlkZQoKYGBgCiQgZ3VscCB3YXRjaApgYGAKCndhdGNoIHNyYy8gYW5kIGNvbXBpbGUgdG8gYXNzZXRzLwoKeW91IGNhbiBlZGl0CgpgYGAKc2xpZGUubWQKc3JjLwogIC0gaW5kZXguY29mZmVlCiAgLSBzdHlsZS5zY3NzCmBgYAoKLS0tLS0tLQoKIyMgSG93IHRvIGRlcGxveQoKYGBgCiMgQ3JlYXRlIHlvdXIgcmVwbwokIGh1YiBjcmVhdGUgeW91ci9yZXBvCiQgZ2l0IHB1c2ggb3JpZ2luIG1hc3RlcgokIHNoIGRlcGxveS5zaApgYGAKCi0tLS0tLS0KCiMjIEVuam95IQo=","base64").toString();
 
 $ = React.createElement;
 
@@ -26104,6 +26104,8 @@ Slide = React.createClass({
       className: 'slider-container'
     }, [
       $('div', {
+        className: 'slider-preview-container'
+      }, [this.props.slides[this.state.page]]), $('div', {
         className: 'slider-ui'
       }, [
         $('button', {
@@ -26111,21 +26113,27 @@ Slide = React.createClass({
         }, 'prev'), $('button', {
           onClick: this.next
         }, 'next'), $('span', {}, (this.state.page + 1) + "/" + this.props.slides.length)
-      ]), $('div', {
-        className: 'slider-preview-container'
-      }, [this.props.slides[this.state.page]])
+      ])
     ]);
   }
 });
 
 window.addEventListener('DOMContentLoaded', function() {
-  var slides;
+  var app, slides;
   slides = source.split(/\-{3,}/g).map(function(s) {
     return md2react(s);
   });
-  return React.render(React.createElement(Slide, {
+  app = React.render(React.createElement(Slide, {
     slides: slides
   }), document.body);
+  return window.addEventListener('keydown', function(e) {
+    if (e.keyCode === 37) {
+      app.prev();
+    }
+    if (e.keyCode === 39) {
+      return app.next();
+    }
+  });
 });
 
 

@@ -1,3 +1,16 @@
 body {
   background: #eee;
 }
+
+.slider-preview-container {
+  outline: 1px solid gray;
+  width: 640px;
+  height: 480px;
+  padding: 12px;
+  background-color: white;
+}
+
+
+code.code {
+  white-space: pre;
+}

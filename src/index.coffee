@@ -16,18 +16,24 @@ Slide = React.createClass
 
   render: ->
     $ 'div', className: 'slider-container', [
+      $ 'div', className: 'slider-preview-container', [
+        @props.slides[@state.page]
+      ]
       $ 'div', className: 'slider-ui', [
         $ 'button', onClick: @prev, 'prev'
         $ 'button', onClick: @next, 'next'
         $ 'span', {}, "#{@state.page+1}/#{@props.slides.length}"
       ]
-      $ 'div', className: 'slider-preview-container', [
-        @props.slides[@state.page]
-      ]
     ]
+
 
 window.addEventListener 'DOMContentLoaded', ->
   slides = source
     .split /\-{3,}/g
     .map (s) -> md2react s
-  React.render(React.createElement(Slide, {slides: slides}), document.body)
+  app = React.render(React.createElement(Slide, {slides: slides}), document.body)
+  window.addEventListener 'keydown', (e) ->
+    if e.keyCode is 37
+      app.prev()
+    if e.keyCode is 39
+      app.next()
